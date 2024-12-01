@@ -1,0 +1,96 @@
+services:
+  orders-service:
+    build:
+      context: ./orders-service
+      dockerfile: Dockerfile
+    container_name: orders-service
+    network_mode: bridge # Este modo se conecta a todas las redes de los contenedores y viene por defecto
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5434:5432"
+    network_mode: bridge
+    environment:
+      POSTGRES_USER: fazt
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: db_orders
+    volumes:
+      - ./db-scripts/postgres-init.sql:/docker-entrypoint-initdb.d/postgres-init.sql
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    network_mode: bridge
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - ./db-scripts/mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql
+  log-stash:
+    image: docker.elastic.co/logstash/logstash:8.15.1
+    container_name: logstash
+    network_mode: bridge
+    ports:
+      - "5044:5044" #PUERTO PARA ENDICAR EL INGRESO DE LA INFORMACION
+      - "9600:9600" #PUERTO PARA VER EL ESTADO DE LOGSTASH, POR DONDE SALE LA INFORMACION
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m" # MEMORIA RAM QUE VA A UTILIZAR LOGSTASH, SERVICIOS MINIMOS QUE SE NECESITAN PARA LEVANTAR LOGSTASH
+      xpack.monitoring.enabled: false # DESHABILITAR MONITOREO, PORQUE SI NO LO IMPLEMENTAMOS CON PROMETEUS Y GRAFANA NO FUNCIONA
+    volumes:
+      - ./config-docker/logstash.conf:/usr/share/logstash/pipeline/logstash.conf # PIPELINE QUIERE DECIR QUE DENTRO TIENE UNA CONFIGURACION DE COMO SE VA A PROCESAR LA INFORMACION
+    depends_on:
+      - elasticsearch # ALMACENAR LA INFORMACION EN ELASTICSEARCH PARA PODER VISUALIZAR
+  elasticsearch: #ES UNA BASE DE DATOS, SE PUEDEN ALMACENAR DATOS RELACIONALES Y NO RELACIONES PERO SE BASA MAS EN NO-SQL
+    image: elasticsearch:8.15.0
+    container_name: elasticsearch
+    network_mode: bridge
+    ports:
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node #SIN CERTIFICADO
+      - ELASTIC_PASSWORD=123456789
+      - xpack.security.enabled=true #DESAHIBILITAR SEGURIDAD, POR LO QUE NO TENEMOS CERTIFICADO
+      - xpack.security.transport.ssl.enabled=false
+      - xpack.security.http.ssl.enabled=false
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+  kibana:
+    image: kibana:8.15.0
+    container_name: kibana
+    network_mode: bridge
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_URL=http://host.docker.internal:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=P3siUMxmUC7tW3SBDZhx # Contraseña se debe de generar de Elasticksearch, PERO AHORA NO SE NECESITA PORQUE EXPONE UN ENPOINT PARA HACERLO
+    volumes:
+      - ./config-docker/kibana.yml:/usr/share/kibana/config/kibana.yml
+    depends_on:
+      - elasticsearch
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    network_mode: bridge
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: prometheus
+    network_mode: bridge
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./config-docker/prometheus.yaml:/etc/prometheus/prometheus.yml
+volumes:
+  grafana-storage: {}
+  esdata:
+    driver: local

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Microservices Inventory/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/core-t/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/credit-card-processor-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/discovery-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/orders-service/application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/orders-service/domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/orders-service/infraestructure/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/orders-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/orders-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/payment-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-service/application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-service/domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-service/infraestructure/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/products-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/reservation-service/application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/reservation-service/domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/reservation-service/infraestructure/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/reservation-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/reservation-service/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

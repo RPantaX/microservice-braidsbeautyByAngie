@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 10s #cada que tiempo envia una peticion
+  evaluation_interval: 10s
+
+scrape_configs:
+  - job_name: 'orders-service'
+    metrics_path: 'orders-service/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8080']
+  - job_name: 'payment-service'
+    metrics_path: 'payment-service/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8081' ]
+  - job_name: 'products-service'
+    metrics_path: 'products-service/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8081' ]
+  - job_name: 'reservation-service'
+    metrics_path: 'reservation-service/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8081' ]
+  - job_name: 'credit-card-processor-service'
+    metrics_path: 'credit-card-processor-service/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8082' ]

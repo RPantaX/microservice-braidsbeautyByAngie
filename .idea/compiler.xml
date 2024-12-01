@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <directory url="file://$PROJECT_DIR$/orders-service/application/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/orders-service/domain/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/orders-service/infraestructure/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/products-service/application/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/products-service/domain/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/products-service/infraestructure/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/reservation-service/application/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/reservation-service/domain/src/main/resources/archetype-resources" includeSubdirectories="true" />
+      <directory url="file://$PROJECT_DIR$/reservation-service/infraestructure/src/main/resources/archetype-resources" includeSubdirectories="true" />
+    </excludeFromCompile>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="application (1)" />
+        <module name="domain (2)" />
+        <module name="config-service" />
+        <module name="infraestructure (1)" />
+        <module name="domain (1)" />
+        <module name="infraestructure" />
+        <module name="infraestructure (2)" />
+        <module name="service-inventory" />
+        <module name="credit-card-processor-service" />
+        <module name="saga-pattern-spring-boot" />
+        <module name="discovery-service" />
+        <module name="payment-service" />
+        <module name="application" />
+        <module name="domain" />
+        <module name="api-gateway" />
+        <module name="application (2)" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
+      <module name="application" options="-parameters" />
+      <module name="application (1)" options="-parameters" />
+      <module name="application (2)" options="-parameters" />
+      <module name="config-service" options="-parameters" />
+      <module name="credit-card-processor-service" options="-parameters" />
+      <module name="discovery-service" options="-parameters" />
+      <module name="domain" options="-parameters" />
+      <module name="domain (1)" options="-parameters" />
+      <module name="domain (2)" options="-parameters" />
+      <module name="infraestructure" options="-parameters" />
+      <module name="infraestructure (1)" options="-parameters" />
+      <module name="infraestructure (2)" options="-parameters" />
+      <module name="payment-service" options="-parameters" />
+      <module name="saga-pattern-spring-boot" options="-parameters" />
+      <module name="service-inventory" options="-parameters" />
+    </option>
+  </component>
+</project>
