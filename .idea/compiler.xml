@@ -24,7 +24,6 @@
         <module name="domain (1)" />
         <module name="infraestructure" />
         <module name="infraestructure (2)" />
-        <module name="service-inventory" />
         <module name="credit-card-processor-service" />
         <module name="saga-pattern-spring-boot" />
         <module name="discovery-service" />
@@ -35,6 +34,9 @@
         <module name="application (2)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="service-inventory" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
